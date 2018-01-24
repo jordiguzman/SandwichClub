@@ -5,12 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import appkite.jordiguzman.com.sandwichclub.adapter.AdapterListMainActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,9 +15,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] sandwiches = AdapterListMainActivity.sandwiches;
-        ArrayList<String> strings= new ArrayList<>(Arrays.asList(sandwiches));
-        AdapterListMainActivity adapter = new AdapterListMainActivity(this, strings);
+
+        String[] sandwiches = getResources().getStringArray(R.array.sandwich_names);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, sandwiches);
 
         // Simplification: Using a ListView instead of a RecyclerView
         ListView listView = findViewById(R.id.sandwiches_listview);
@@ -39,4 +36,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(DetailActivity.EXTRA_POSITION, position);
         startActivity(intent);
     }
+
+
 }
