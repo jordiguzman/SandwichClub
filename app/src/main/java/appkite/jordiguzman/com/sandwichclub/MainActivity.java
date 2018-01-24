@@ -1,12 +1,16 @@
 package appkite.jordiguzman.com.sandwichclub;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import appkite.jordiguzman.com.sandwichclub.adapter.AdapterListMainActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,12 +19,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] sandwiches = getResources().getStringArray(R.array.sandwich_names);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, sandwiches);
+        String[] sandwiches = AdapterListMainActivity.sandwiches;
+        ArrayList<String> strings= new ArrayList<>(Arrays.asList(sandwiches));
+        AdapterListMainActivity adapter = new AdapterListMainActivity(this, strings);
 
         // Simplification: Using a ListView instead of a RecyclerView
         ListView listView = findViewById(R.id.sandwiches_listview);
+        listView.setBackgroundColor(getResources().getColor(R.color.primary_dark));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

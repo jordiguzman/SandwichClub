@@ -16,7 +16,17 @@ import appkite.jordiguzman.com.sandwichclub.model.Sandwich;
  */
 
 public class JsonUtils {
+
     private static final String LOG_TAG = JsonUtils.class.getSimpleName();
+    private static final String SAND_NAME = "name";
+    private static final String SAND_MAIN_NAME= "mainName";
+    private static final String SAND_ALSO= "alsoKnownAs";
+    private static final String SAND_PLACE_ORIGIN= "placeOfOrigin";
+    private static final String SAND_DESCRIPTION= "description";
+    private static final String SAND_IMAGE= "image";
+    private static final String SAND_INGREDIENTS= "ingredients";
+
+
 
 
 
@@ -31,13 +41,15 @@ public class JsonUtils {
         List<String> alsoKnownAs = new ArrayList<>();
         try {
             jsonObject = new JSONObject(json);
-            JSONObject jsonObjectName = jsonObject.getJSONObject("name");
-            mainName = jsonObjectName.getString("mainName");
-            placeOfOrigin = jsonObject.getString("placeOfOrigin");
-            description = jsonObject.getString("description");
-            image = jsonObject.getString("image");
-            alsoKnownAs = jsonArrayList(jsonObjectName.getJSONArray("alsoKnownAs"));
-            ingredients = jsonArrayList(jsonObject.getJSONArray("ingredients"));
+            JSONObject jsonObjectName = jsonObject.getJSONObject(SAND_NAME);
+            mainName = jsonObjectName.getString(SAND_MAIN_NAME);
+            placeOfOrigin = jsonObject.getString(SAND_PLACE_ORIGIN);
+            description = jsonObject.getString(SAND_DESCRIPTION);
+            image = jsonObject.getString(SAND_IMAGE);
+
+            alsoKnownAs = jsonArrayList(jsonObjectName.getJSONArray(SAND_ALSO));
+            ingredients = jsonArrayList(jsonObject.getJSONArray(SAND_INGREDIENTS));
+
 
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Problems with parse", e);
