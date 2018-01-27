@@ -17,6 +17,7 @@ import appkite.jordiguzman.com.sandwichclub.utils.JsonUtils;
 public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
+
     private Sandwich sandwich;
     private TextView tv_also_know, tv_origin, tv_description, tv_ingredients;
 
@@ -38,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         if (intent== null) {
             closeOnError();
         }
+
 
         assert intent != null;
         int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
@@ -96,4 +98,6 @@ public class DetailActivity extends AppCompatActivity {
         }
         return stringBuilder;
     }
+
+
 }

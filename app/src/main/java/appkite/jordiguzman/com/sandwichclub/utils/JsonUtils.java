@@ -42,10 +42,10 @@ public class JsonUtils {
         try {
             jsonObject = new JSONObject(json);
             JSONObject jsonObjectName = jsonObject.getJSONObject(SAND_NAME);
-            mainName = jsonObjectName.getString(SAND_MAIN_NAME);
-            placeOfOrigin = jsonObject.getString(SAND_PLACE_ORIGIN);
-            description = jsonObject.getString(SAND_DESCRIPTION);
-            image = jsonObject.getString(SAND_IMAGE);
+            mainName = jsonObjectName.optString(SAND_MAIN_NAME);
+            placeOfOrigin = jsonObject.optString(SAND_PLACE_ORIGIN);
+            description = jsonObject.optString(SAND_DESCRIPTION);
+            image = jsonObject.optString(SAND_IMAGE);
 
             alsoKnownAs = jsonArrayList(jsonObjectName.getJSONArray(SAND_ALSO));
             ingredients = jsonArrayList(jsonObject.getJSONArray(SAND_INGREDIENTS));
